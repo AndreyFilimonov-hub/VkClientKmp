@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
@@ -24,18 +23,6 @@ class LoginViewModel : ViewModel() {
     fun processCommand(command: LoginCommand) {
         viewModelScope.launch {
             when (command) {
-                is LoginCommand.InputEmail -> {
-                    _state.update { previousState ->
-                        previousState.copy(email = command.value, isError = false)
-                    }
-                }
-
-                is LoginCommand.InputPassword -> {
-                    _state.update { previousState ->
-                        previousState.copy(password = command.value, isError = false)
-                    }
-                }
-
                 LoginCommand.Login -> {
                     loginUseCase()
                         .onSuccess {
