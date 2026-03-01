@@ -2,7 +2,7 @@ package com.filimonov.vkclientkmp.presentation.screens.loginscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.filimonov.vkclientkmp.data.repository.LoginRepositoryImpl
+import com.filimonov.vkclientkmp.di.AppComponentTemp
 import com.filimonov.vkclientkmp.domain.usecase.LoginUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
 
-    private val repository = LoginRepositoryImpl()
-    private val loginUseCase = LoginUseCase(repository)
+    private val loginUseCase = LoginUseCase(AppComponentTemp.loginRepository)
 
     private val _state = MutableStateFlow(LoginUiState("", "", false))
     val state = _state.asStateFlow()
@@ -38,7 +37,7 @@ class LoginViewModel : ViewModel() {
                 }
 
                 LoginCommand.Login -> {
-                    loginUseCase(_state.value.email, _state.value.password)
+                    loginUseCase()
                         .onSuccess {
                             _loginEvent.emit(LoginUiEvent.LoginSuccessEvent)
                         }
