@@ -9,11 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,12 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.autofill.ContentType
-import androidx.compose.ui.semantics.contentType
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,10 +34,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import vkclientkmp.composeapp.generated.resources.Res
 import vkclientkmp.composeapp.generated.resources.compose_multiplatform
-import vkclientkmp.composeapp.generated.resources.email_label
 import vkclientkmp.composeapp.generated.resources.invalid_data
 import vkclientkmp.composeapp.generated.resources.login
-import vkclientkmp.composeapp.generated.resources.password_label
 
 @Composable
 fun LoginScreen(
@@ -75,25 +66,9 @@ fun LoginScreen(
         ) {
             LoginImage()
             MediumVerticalSpacer()
-            EmailOutlinedTextField(
-                email = state.email,
-                onValueChange = { value ->
-                    viewModel.processCommand(LoginCommand.InputEmail(value))
-                },
-                isError = state.isError
-            )
-            MediumVerticalSpacer()
-            PasswordOutlinedTextField(
-                password = state.password,
-                onValueChange = { value ->
-                    viewModel.processCommand(LoginCommand.InputPassword(value))
-                },
-                isError = state.isError
-            )
             ErrorDataText(isError = state.isError)
             MediumVerticalSpacer()
             LoginButton(
-                enabled = state.isLoginButtonActive,
                 onClick = { viewModel.processCommand(LoginCommand.Login) }
             )
         }
@@ -132,70 +107,15 @@ private fun ErrorDataText(
 }
 
 @Composable
-private fun EmailOutlinedTextField(
-    modifier: Modifier = Modifier,
-    email: String,
-    onValueChange: (String) -> Unit,
-    isError: Boolean
-) {
-    OutlinedTextField(
-        modifier = modifier.fillMaxWidth()
-            .semantics {
-                contentType = ContentType.Username + ContentType.EmailAddress
-            },
-        value = email,
-        onValueChange = onValueChange,
-        label = {
-            Text(
-                text = stringResource(Res.string.email_label)
-            )
-        },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Email
-        ),
-        maxLines = 1,
-        isError = isError
-    )
-}
-
-@Composable
-private fun PasswordOutlinedTextField(
-    modifier: Modifier = Modifier,
-    password: String,
-    onValueChange: (String) -> Unit,
-    isError: Boolean
-) {
-    OutlinedTextField(
-        modifier = modifier.fillMaxWidth(),
-        value = password,
-        onValueChange = onValueChange,
-        label = {
-            Text(
-                text = stringResource(Res.string.password_label)
-            )
-        },
-        visualTransformation = PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Password
-        ),
-        maxLines = 1,
-        isError = isError
-    )
-}
-
-
-@Composable
 private fun LoginButton(
     modifier: Modifier = Modifier,
-    enabled: Boolean,
     onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.fillMaxWidth()
             .heightIn(min = 48.dp),
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-        enabled = enabled
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
     ) {
         Text(
             text = stringResource(Res.string.login),

@@ -4,5 +4,5 @@ import com.filimonov.vkclientkmp.domain.repository.LoginRepository
 
 class LoginUseCase(private val repository: LoginRepository) {
 
-    suspend operator fun invoke(email: String, password: String) = repository.login(email, password)
+    suspend operator fun invoke() = repository.login()
 }

@@ -1,16 +1,18 @@
 package com.filimonov.vkclientkmp.data.repository
 
+import com.filimonov.vkclientkmp.data.auth.VkAuthManager
 import com.filimonov.vkclientkmp.domain.repository.LoginRepository
 
-class LoginRepositoryImpl : LoginRepository {
-    override suspend fun login(
-        email: String,
-        password: String
-    ): Result<Unit> {
-        return if (email.contains("@")) {
+class LoginRepositoryImpl(
+    private val vkAuthManager: VkAuthManager
+) : LoginRepository {
+
+    override suspend fun login(): Result<Unit> {
+        return try {
+            vkAuthManager.authorize()
             Result.success(Unit)
-        } else {
-            Result.failure(IllegalStateException("Invalid email"))
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 }
