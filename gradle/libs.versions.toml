@@ -3,6 +3,8 @@ agp = "8.11.2"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
+androidSdkCore = "4.1.0"
+androidSdkApi = "4.1.0"
 androidx-activity = "1.12.4"
 androidx-appcompat = "1.7.1"
 androidx-core = "1.17.0"
@@ -14,13 +16,18 @@ composeMultiplatform = "1.10.1"
 junit = "4.13.2"
 kotlin = "2.3.10"
 kotlinxSerializationJson = "1.10.0"
-ktorClientDarwin = "3.4.0"
-ktorClientOkhttp = "3.4.0"
+ktorClientDarwin = "2.3.7"
+ktorClientOkhttp = "2.3.7"
+okhttp="4.12.0"
 material3 = "1.10.0-alpha05"
 napier = "2.7.1"
 navigationCompose = "2.9.2"
+vkidSdk = "2.6.0"
+vkidManifestPlaceholders = "1.1.0"
 
 [libraries]
+android-sdk-api = { module = "com.vk:android-sdk-api", version.ref = "androidSdkApi" }
+android-sdk-core = { module = "com.vk:android-sdk-core", version.ref = "androidSdkCore" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coilCompose" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -43,8 +50,12 @@ compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-previ
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttp" }
 ktor-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorClientDarwin" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-tls = { module = "com.squareup.okhttp3:okhttp-tls", version.ref = "okhttp" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+vk-sdk-support = { module = "com.vk.id:vk-sdk-support", version.ref = "vkidSdk" }
+vkid = { module = "com.vk.id:vkid", version.ref = "vkidSdk" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -53,3 +64,4 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMul
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+vkidManifestPlaceholders = { id = "vkid.manifest.placeholders", version.ref = "vkidManifestPlaceholders" }
