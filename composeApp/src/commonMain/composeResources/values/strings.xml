@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">kts-kmp-project</string>
+    <string name="app_name">VKClientKMP</string>
     <string name="onboarding_profile_title">Ваш профиль - без лишнего</string>
     <string name="onboarding_profile_description">Все ваши посты, друзья и сообщества в одном удобном месте</string>
     <string name="onboarding_friends_title">Друзья и сообщества</string>
@@ -9,6 +9,6 @@
     <string name="start">Начать</string>
     <string name="email_label">Email</string>
     <string name="password_label">Password</string>
-    <string name="login">Войти</string>
-    <string name="invalid_data">Неверный адрес эллектронной почты или пароль</string>
+    <string name="login">Войти через VK</string>
+    <string name="invalid_data">Во время авторизации произошла ошибка, попробуйте снова</string>
 </resources>
