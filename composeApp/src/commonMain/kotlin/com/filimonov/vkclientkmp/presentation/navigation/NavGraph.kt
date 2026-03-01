@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.filimonov.vkclientkmp.presentation.screens.loginscreen.LoginScreen
 import com.filimonov.vkclientkmp.presentation.screens.mainscreen.MainScreen
 import com.filimonov.vkclientkmp.presentation.screens.onboardingscreen.OnboardingScreen
+import com.filimonov.vkclientkmp.presentation.screens.splashscreen.SplashScreen
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -15,8 +16,19 @@ fun NavGraph() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.OnboardingScreen
+        startDestination = Screen.SplashScreen
     ) {
+        composable<Screen.SplashScreen> {
+            SplashScreen(
+                onNavigate = { screen ->
+                    navController.navigate(screen) {
+                        popUpTo(Screen.SplashScreen) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
         composable<Screen.OnboardingScreen> {
             OnboardingScreen(
                 onFinish = {
@@ -54,5 +66,8 @@ sealed interface Screen {
     data object LoginScreen : Screen
 
     @Serializable
-    data object MainScreen: Screen
+    data object MainScreen : Screen
+
+    @Serializable
+    data object SplashScreen : Screen
 }
