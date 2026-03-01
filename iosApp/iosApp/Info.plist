@@ -6,3 +6,20 @@
 	<true/>
 </dict>
 </plist>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>vkauthorize-silent</string>
+</array>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>auth_callback</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>vk54464632</string>
+        </array>
+    </dict>
+</array>
