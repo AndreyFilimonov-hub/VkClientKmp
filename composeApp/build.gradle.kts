@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.vkidManifestPlaceholders)
 }
 
 kotlin {
@@ -27,6 +28,17 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.androidx.core.splashscreen)
+
+            implementation(libs.androidx.datastore.preferences)
+
+            implementation(libs.vkid)
+            implementation(libs.vk.sdk.support)
+            implementation(libs.android.sdk.core)
+            implementation(libs.android.sdk.api)
+
+            implementation(libs.okhttp)
+            implementation(libs.okhttp.tls)
             implementation(libs.ktor.client.okhttp)
 
             implementation(libs.compose.uiToolingPreview)
@@ -60,11 +72,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.filimonov.project"
+    namespace = "com.filimonov.vkclientkmp"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.filimonov.project"
+        applicationId = "com.filimonov.vkclientkmp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -89,4 +101,3 @@ android {
 dependencies {
     debugImplementation(libs.compose.uiTooling)
 }
-
