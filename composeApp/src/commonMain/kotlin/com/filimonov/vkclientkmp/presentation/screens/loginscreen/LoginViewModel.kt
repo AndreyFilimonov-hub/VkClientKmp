@@ -14,7 +14,7 @@ class LoginViewModel : ViewModel() {
 
     private val loginUseCase = LoginUseCase(AppComponentTemp.loginRepository)
 
-    private val _state = MutableStateFlow(LoginUiState("", "", false))
+    private val _state = MutableStateFlow(LoginUiState(isError = false))
     val state = _state.asStateFlow()
 
     private val _loginEvent = MutableSharedFlow<LoginUiEvent>()
