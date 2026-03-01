@@ -28,6 +28,8 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.androidx.datastore.preferences)
+
             implementation(libs.vkid)
             implementation(libs.vk.sdk.support)
             implementation(libs.android.sdk.core)
